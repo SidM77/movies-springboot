@@ -9,12 +9,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class ReviewService {
 
-    //    @Autowired
-//    private ReviewRepository reviewRepository;
     private final ReviewRepository reviewRepository;
     @Autowired
     private MongoTemplate mongoTemplate;
 
+    //review repository does not make use of field injection as shown below(practice)
     @Autowired
     public ReviewService(ReviewRepository reviewRepository) {
         this.reviewRepository = reviewRepository;
