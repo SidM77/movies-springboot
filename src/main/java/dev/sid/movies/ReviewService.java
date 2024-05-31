@@ -9,11 +9,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class ReviewService {
 
-    @Autowired
-    private ReviewRepository reviewRepository;
-
+    //    @Autowired
+//    private ReviewRepository reviewRepository;
+    private final ReviewRepository reviewRepository;
     @Autowired
     private MongoTemplate mongoTemplate;
+
+    @Autowired
+    public ReviewService(ReviewRepository reviewRepository) {
+        this.reviewRepository = reviewRepository;
+    }
 
     public Review createReview(String reviewBody, String imdbId) {
         Review review = reviewRepository.insert(new Review(reviewBody));
