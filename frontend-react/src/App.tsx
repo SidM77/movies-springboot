@@ -4,9 +4,11 @@ import axios from "axios";
 import Layout from "./components/Layout.tsx";
 import {Routes, Route, BrowserRouter} from "react-router-dom";
 import Home from "./components/home/Home.tsx";
+import Film from "./components/film/Film.tsx"
 
 function App() {
     const [movies, setMovies] = useState();
+    const [currentMovie, setCurrentMovie] = useState("OriginalVal");
     const getMovies = async () => {
 
         try {
@@ -27,7 +29,9 @@ function App() {
             {/*    */}
             {/*</Route>*/}
             <Routes>
-                <Route path={"/"} element={<Home movies={movies}/>}/>
+                <Route path={"/"}
+                       element={<Home movies={movies} setCurrentMovie={setCurrentMovie} currentMovie={currentMovie}/>}/>
+                <Route path={`/reviews/${currentMovie}`} element={<Film currentMovie={currentMovie}/>}></Route>
             </Routes>
         </BrowserRouter>
     )
