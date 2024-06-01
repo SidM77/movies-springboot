@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/movies")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "*")
 public class MovieController {
 
     @Autowired
@@ -18,16 +18,14 @@ public class MovieController {
 
     @GetMapping
     public ResponseEntity<List<Movie>> getAllMovies() {
+        System.out.println("Entrypoint1 all movies");
         return new ResponseEntity<List<Movie>>(movieService.allMovies(), HttpStatus.OK);
     }
 
-//    @GetMapping("/{id}")
-//    public ResponseEntity<Optional<Movie>> getSingleMovie(@PathVariable ObjectId id){
-//        return new ResponseEntity<Optional<Movie>>(movieService.singleMovie(id),HttpStatus.OK);
-//    }
-
     @GetMapping("/{imdbId}")
+    @CrossOrigin(origins = "*")
     public ResponseEntity<Optional<Movie>> getMovieByImdbId(@PathVariable String imdbId) {
+        System.out.println(imdbId);
         return new ResponseEntity<Optional<Movie>>(movieService.movieByImdbId(imdbId), HttpStatus.OK);
     }
 }
