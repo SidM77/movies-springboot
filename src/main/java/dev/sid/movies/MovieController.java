@@ -18,12 +18,10 @@ public class MovieController {
 
     @GetMapping
     public ResponseEntity<List<Movie>> getAllMovies() {
-        System.out.println("Entrypoint1 all movies");
         return new ResponseEntity<List<Movie>>(movieService.allMovies(), HttpStatus.OK);
     }
 
     @GetMapping("/{imdbId}")
-    @CrossOrigin(origins = "*")
     public ResponseEntity<Optional<Movie>> getMovieByImdbId(@PathVariable String imdbId) {
         System.out.println(imdbId);
         return new ResponseEntity<Optional<Movie>>(movieService.movieByImdbId(imdbId), HttpStatus.OK);
