@@ -12,11 +12,19 @@ const Film = ({currentMovie}) => {
         }
     }
     useEffect(() => {
+        console.log(currentMovie)
         getMovie();
     }, []);
     return (
         <div>
             <h1>{movie.title}</h1>
+            {/*<div>*/}
+            {movie.reviewIds.map((m) => {
+                return (
+                    <h2>{m.body}</h2>
+                )
+            })}
+            {/*</div>*/}
         </div>
     );
 };
